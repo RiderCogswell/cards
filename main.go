@@ -1,14 +1,17 @@
 package main
 
-// import "fmt"
+import "fmt"
 
 func main() {
-	// card := newCard() // only use this syntax when DEFINING a new variable and when we want the type inferred
+	cards := []string{"Ace of Diamonds", newCard(), newCard()}
 
-	// fmt.Println(card)
-	printState()
+	cards = append(cards, "Six of Spades")
+
+	for i, card := range cards { // we use the := here, because we are initializing a new one on each iter.
+		fmt.Println(i, card)
+	}
 }
 
-// func newCard() string {
-// 	return "Five of Diamonds"
-// }
+func newCard() string {
+	return "Five of Diamonds"
+}
