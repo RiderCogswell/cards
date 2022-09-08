@@ -3,7 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	cards := []string{"Ace of Diamonds", newCard(), newCard()}
+	// use deck type instead
+	cards := deck{"Ace of Diamonds", newCard(), newCard()}
 
 	cards = append(cards, "Six of Spades")
 
