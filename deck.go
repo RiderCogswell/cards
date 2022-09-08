@@ -29,3 +29,8 @@ func (d deck) print() {
 		fmt.Println(i, card)
 	}
 }
+
+// this annotation declares that we will be returning two values of type deck
+func deal(d deck, handSize int) (deck, deck) { 
+	return d[:handSize], d[handSize:]
+}

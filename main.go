@@ -1,14 +1,10 @@
 package main
 
 func main() {
-	// use deck type instead
-	cards := deck{"Ace of Diamonds", newCard(), newCard()}
+	cards := newDeck()
 
-	cards = append(cards, "Six of Spades")
+	hand, remainingCards := deal(cards, 5) // this sets two new vars of hand, and remaining, both with types of deck
 
-	cards.print() // calling the deck print method from deck.go
-}
-
-func newCard() string {
-	return "Five of Diamonds"
+	hand.print()
+	remainingCards.print()
 }
