@@ -43,6 +43,14 @@ func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
 
-func (d deck) saveToFile(filename string) {
+func (d deck) saveToFile(filename string)  {
 	os.WriteFile(filename, []byte(d.toString()), 0666) // 0666 is a permission code that allows anyone to read or write
+}
+
+func newDeckFromFile(filename string) deck {
+	bs, err := os.ReadFile(filename)
+	if err != nil {
+		 fmt.Println("Error:", err)
+		 os.Exit(1)
+	}
 }
