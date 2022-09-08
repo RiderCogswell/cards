@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
 )
@@ -43,7 +44,7 @@ func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
 
-func (d deck) saveToFile(filename string)  {
+func (d deck) saveToFile(filename string) {
 	os.WriteFile(filename, []byte(d.toString()), 0666) // 0666 is a permission code that allows anyone to read or write
 }
 
@@ -56,4 +57,12 @@ func newDeckFromFile(filename string) deck {
 
 	s := strings.Split(string(bs), ",") // turn into string slice
 	return deck(s) // return this new deck
+}
+
+func (d deck) shuffle() {
+	for i := range d {
+		newPosition := rand.Intn(len(d) - 1) // random number between the indexed length of the cards -> d
+
+		d[i], d[newPosition] = d[newPosition], d[i] // one line swap algo 
+	}
 }
