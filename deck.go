@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // create a new type of 'deck'
@@ -49,7 +50,7 @@ func (d deck) saveToFile(filename string) {
 }
 
 func newDeckFromFile(filename string) deck {
-	bs, err := os.ReadFile(filename)
+	bs, err := os.ReadFile(filename) // bs = byte slice  
 	if err != nil {
 		 fmt.Println("Error:", err)
 		 os.Exit(1) // exit program completely
@@ -60,8 +61,11 @@ func newDeckFromFile(filename string) deck {
 }
 
 func (d deck) shuffle() {
+	source := rand.NewSource(time.Now().UnixNano()) // using the rand.NewSource() std package, and passing in a random time as an int64, we are successfully getting a new randomization each time
+	r := rand.New(source)
+
 	for i := range d {
-		newPosition := rand.Intn(len(d) - 1) // random number between the indexed length of the cards -> d
+		newPosition := r.Intn(len(d) - 1) // random number between the indexed length of the cards -> d
 
 		d[i], d[newPosition] = d[newPosition], d[i] // one line swap algo 
 	}
