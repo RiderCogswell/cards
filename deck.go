@@ -31,13 +31,13 @@ func newDeck() deck {
 // this (d deck) is a receiver! meaning any var
 // of type deck can use these receiver functions
 func (d deck) print() {
-	for i, card := range d { // we use the := here, because we are initializing a new one on each iter.
+	for i, card := range d { // we use the := here, because we are initializing a new one on each iteration
 		fmt.Println(i, card)
 	}
 }
 
 // this annotation declares that we will be returning two values of type deck
-func deal(d deck, handSize int) (deck, deck) { 
+func deal(d deck, handSize int) (deck, deck) { // WE DO NOT MAKE THIS A RECEIVER BECAUSE IT WOULD BE MODIFYING THE CARDS SLICE
 	return d[:handSize], d[handSize:]
 }
 
